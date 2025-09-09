@@ -1,0 +1,17 @@
+# Content Ops Automation Crontab
+# Scheduled jobs for backup, sync, and maintenance
+
+# Daily database backup at 2 AM
+0 2 * * * cd /app && python -m content_ops.scheduler run-job backup >> /var/log/cron.log 2>&1
+
+# Content synchronization every 6 hours
+0 */6 * * * cd /app && python -m content_ops.scheduler run-job content_sync >> /var/log/cron.log 2>&1
+
+# Weekly cleanup on Sunday at 3 AM
+0 3 * * 0 cd /app && python -m content_ops.scheduler run-job cleanup >> /var/log/cron.log 2>&1
+
+# Hourly health check
+0 * * * * cd /app && python -m content_ops.scheduler run-job health_check >> /var/log/cron.log 2>&1
+
+# Monthly database optimization on first day of month at 4 AM
+0 4 1 * * cd /app && python -c "from content_ops.content_sync import ContentSync; cs = ContentSync(); cs.cleanup_old_revisions('site1_', 90); cs.cleanup_old_revisions('site2_', 90)" >> /var/log/cron.log 2>&1

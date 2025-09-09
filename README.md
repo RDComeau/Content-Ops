@@ -7,7 +7,7 @@
 ## Directory Structure Example
 
 ```plaintext
-/my-headless-wordpress-projects/
+/Content-ops/
 │
 ├── personal-blog/
 │    ├── wordpress/              # Docker configs, plugins, custom code, DB exports

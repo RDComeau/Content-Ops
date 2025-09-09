@@ -43,7 +43,7 @@
 
 ## Organizations & Projects
 
-### Person Blog
+### Personal Blog
 My personal, headless WordPress blog. Contains:
 - Custom plugins and theme code.
 - Dated RSS feed archives for robust content versioning.
